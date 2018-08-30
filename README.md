@@ -1,2 +1,4 @@
-# TextRenderer
-It uses stb_truetype to render fonts on demand to a texture atlas and prepares text to be rendered.
+# FastUI
+Immediate Mode Graphical User interface for C++.
+
+![Screenshot](RepoImages/EarlyWindowTests.png)
