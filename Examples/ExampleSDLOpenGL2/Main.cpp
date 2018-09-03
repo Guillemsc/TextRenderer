@@ -7,8 +7,7 @@
 #pragma comment( lib, "Libs/SDL2/libx86/SDL2main.lib" )
 #pragma comment (lib, "opengl32.lib")
 
-#include "FastSDLOpenGL2Renderer.h"
-#include "..\..\FastGUI.h"
+#include "..\..\TextRenderer.h"
 
 int main(int argc, char ** argv)
 {
@@ -66,6 +65,9 @@ int main(int argc, char ** argv)
 	int size_x; int size_y;
 	SDL_GetWindowSize(window, &size_x, &size_y);
 
+	TRInternal::TRMain::Instance().val = 10;
+
+	TRInternal::TRMain::Instance().val = 2;
 
 	// Main loop
 	bool done = false;

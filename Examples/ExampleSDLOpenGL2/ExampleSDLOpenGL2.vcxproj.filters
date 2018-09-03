@@ -13,12 +13,18 @@
     <ClCompile Include="..\..\TextRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TRSDLOpenGL2Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\stb_truetype.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\TextRenderer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TRSDLOpenGL2Renderer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

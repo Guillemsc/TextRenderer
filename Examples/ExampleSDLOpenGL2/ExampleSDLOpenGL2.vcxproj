@@ -129,11 +129,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\TextRenderer.cpp" />
+    <ClCompile Include="TRSDLOpenGL2Renderer.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\TextRenderer.h" />
     <ClInclude Include="..\..\stb_truetype.h" />
+    <ClInclude Include="TRSDLOpenGL2Renderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

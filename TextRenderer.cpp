@@ -1,47 +1,45 @@
 #include "TextRenderer.h"
 
-static FastInternal::FastMain* fast_main = nullptr;
-
-FastVec2::FastVec2()
+TRVec2::TRVec2()
 {
 	x = 0.0f;
 	y = 0.0f;
 }
 
-FastVec2::FastVec2(float _x, float _y)
+TRVec2::TRVec2(float _x, float _y)
 {
 	x = _x;
 	y = _y;
 }
 
-FastVec2 FastVec2::operator+(const FastVec2 & vec)
+TRVec2 TRVec2::operator+(const TRVec2 & vec)
 {
-	return FastVec2(x + vec.x, y + vec.y);
+	return TRVec2(x + vec.x, y + vec.y);
 }
 
-FastVec2 FastVec2::operator-(const FastVec2 & vec)
+TRVec2 TRVec2::operator-(const TRVec2 & vec)
 {
-	return FastVec2(x - vec.x, y - vec.y);
+	return TRVec2(x - vec.x, y - vec.y);
 }
 
-FastVec2 FastVec2::operator*(const FastVec2 & vec)
+TRVec2 TRVec2::operator*(const TRVec2 & vec)
 {
-	return FastVec2(x * vec.x, y * vec.y);
+	return TRVec2(x * vec.x, y * vec.y);
 }
 
-FastVec2 FastVec2::operator*(int val)
+TRVec2 TRVec2::operator*(int val)
 {
-	return FastVec2(x * val, y *val);
+	return TRVec2(x * val, y *val);
 }
 
-FastVec2 FastVec2::operator*(float val)
+TRVec2 TRVec2::operator*(float val)
 {
-	return FastVec2(x * val, y *val);
+	return TRVec2(x * val, y *val);
 }
 
-FastVec2 FastVec2::operator/(const FastVec2 & vec)
+TRVec2 TRVec2::operator/(const TRVec2 & vec)
 {
-	FastVec2 ret;
+	TRVec2 ret;
 
 	if (vec.x != 0)
 		ret.x = x / vec.x;
@@ -52,25 +50,25 @@ FastVec2 FastVec2::operator/(const FastVec2 & vec)
 	return ret;
 }
 
-void FastVec2::operator+=(const FastVec2 & vec)
+void TRVec2::operator+=(const TRVec2 & vec)
 {
 	x += vec.x;
 	y += vec.y;
 }
 
-void FastVec2::operator-=(const FastVec2 & vec)
+void TRVec2::operator-=(const TRVec2 & vec)
 {
 	x -= vec.x;
 	y -= vec.y;
 }
 
-void FastVec2::operator*=(const FastVec2 & vec)
+void TRVec2::operator*=(const TRVec2 & vec)
 {
 	x *= vec.x;
 	y *= vec.y;
 }
 
-void FastVec2::operator/=(const FastVec2 & vec)
+void TRVec2::operator/=(const TRVec2 & vec)
 {
 	if (vec.x != 0)
 		x /= vec.x;
@@ -79,7 +77,7 @@ void FastVec2::operator/=(const FastVec2 & vec)
 		y /= vec.y;
 }
 
-float FastVec2::Distance(const FastVec2 & vec)
+float TRVec2::Distance(const TRVec2 & vec)
 {
 	float dist_x = vec.x - x;
 	float dist_y = vec.y - y;
@@ -87,49 +85,49 @@ float FastVec2::Distance(const FastVec2 & vec)
 	return sqrt(fabs((dist_x * dist_x) + (dist_y * dist_y)));
 }
 
-FastVec3::FastVec3()
+TRVec3::TRVec3()
 {
 }
 
-FastVec3::FastVec3(float _x, float _y, float _z)
+TRVec3::TRVec3(float _x, float _y, float _z)
 {
 	x = _x;
 	y = _y;
 	z = _z;
 }
 
-FastVec3 FastVec3::operator+(const FastVec3 & vec)
+TRVec3 TRVec3::operator+(const TRVec3 & vec)
 {
-	return FastVec3(x + vec.x, y + vec.y, z + vec.z);
+	return TRVec3(x + vec.x, y + vec.y, z + vec.z);
 }
 
-FastVec3 FastVec3::operator-(const FastVec3 & vec)
+TRVec3 TRVec3::operator-(const TRVec3 & vec)
 {
-	return FastVec3(x - vec.x, y - vec.y, z - vec.z);
+	return TRVec3(x - vec.x, y - vec.y, z - vec.z);
 }
 
-void FastVec3::operator+=(const FastVec3 & vec)
+void TRVec3::operator+=(const TRVec3 & vec)
 {
 	x += vec.x;
 	y += vec.y;
 	z += vec.z;
 }
 
-void FastVec3::operator-=(const FastVec3 & vec)
+void TRVec3::operator-=(const TRVec3 & vec)
 {
 	x -= vec.x;
 	y -= vec.y;
 	z -= vec.z;
 }
 
-void FastVec3::operator*=(const FastVec3 & vec)
+void TRVec3::operator*=(const TRVec3 & vec)
 {
 	x *= vec.x;
 	y *= vec.y;
 	z *= vec.z;
 }
 
-void FastVec3::operator/=(const FastVec3 & vec)
+void TRVec3::operator/=(const TRVec3 & vec)
 {
 	if (vec.x != 0)
 		x /= vec.x;
@@ -141,7 +139,7 @@ void FastVec3::operator/=(const FastVec3 & vec)
 		z /= vec.z;
 }
 
-float FastVec3::Distance(const FastVec3 & vec)
+float TRVec3::Distance(const TRVec3 & vec)
 {
 	float dist_x = vec.x - x;
 	float dist_y = vec.y - y;
@@ -150,7 +148,7 @@ float FastVec3::Distance(const FastVec3 & vec)
 	return sqrt(fabs((dist_x * dist_x) + (dist_y * dist_y) + (dist_z * dist_z)));
 }
 
-FastVec4::FastVec4()
+TRVec4::TRVec4()
 {
 	x = 0;
 	y = 0;
@@ -158,7 +156,7 @@ FastVec4::FastVec4()
 	z = 0;
 }
 
-FastVec4::FastVec4(float _x, float _y, float _w, float _z)
+TRVec4::TRVec4(float _x, float _y, float _w, float _z)
 {
 	x = _x;
 	y = _y;
@@ -166,17 +164,17 @@ FastVec4::FastVec4(float _x, float _y, float _w, float _z)
 	z = _z;
 }
 
-FastVec4 FastVec4::operator+(const FastVec4 & vec)
+TRVec4 TRVec4::operator+(const TRVec4 & vec)
 {
-	return FastVec4(x + vec.x, y + vec.y, w + vec.w, z + vec.z);
+	return TRVec4(x + vec.x, y + vec.y, w + vec.w, z + vec.z);
 }
 
-FastVec4 FastVec4::operator-(const FastVec4 & vec)
+TRVec4 TRVec4::operator-(const TRVec4 & vec)
 {
-	return FastVec4(x - vec.x, y - vec.y, w - vec.w, z - vec.z);
+	return TRVec4(x - vec.x, y - vec.y, w - vec.w, z - vec.z);
 }
 
-void FastVec4::operator+=(const FastVec4 & vec)
+void TRVec4::operator+=(const TRVec4 & vec)
 {
 	x += vec.x;
 	y += vec.y;
@@ -184,7 +182,7 @@ void FastVec4::operator+=(const FastVec4 & vec)
 	z += vec.z;
 }
 
-void FastVec4::operator-=(const FastVec4 & vec)
+void TRVec4::operator-=(const TRVec4 & vec)
 {
 	x -= vec.x;
 	y -= vec.y;
@@ -192,7 +190,7 @@ void FastVec4::operator-=(const FastVec4 & vec)
 	z -= vec.z;
 }
 
-void FastVec4::operator*=(const FastVec4 & vec)
+void TRVec4::operator*=(const TRVec4 & vec)
 {
 	x *= vec.x;
 	y *= vec.y;
@@ -200,7 +198,7 @@ void FastVec4::operator*=(const FastVec4 & vec)
 	z *= vec.z;
 }
 
-void FastVec4::operator/=(const FastVec4 & vec)
+void TRVec4::operator/=(const TRVec4 & vec)
 {
 	if (vec.x != 0)
 		x /= vec.x;
@@ -215,62 +213,62 @@ void FastVec4::operator/=(const FastVec4 & vec)
 		z /= vec.z;
 }
 
-float FastRect::xw()
+float TRRect::xw()
 {
 	return x + w;
 }
 
-float FastRect::yh()
+float TRRect::yh()
 {
 	return y + h;
 }
 
-FastVec2 FastRect::Pos()
+TRVec2 TRRect::Pos()
 {
-	return FastVec2(x, y);
+	return TRVec2(x, y);
 }
 
-FastVec2 FastRect::Size()
+TRVec2 TRRect::Size()
 {
-	return FastVec2(w, h);
+	return TRVec2(w, h);
 }
 
-FastVec2 FastRect::Center()
+TRVec2 TRRect::Center()
 {
-	return FastVec2(x + (w * 0.5f), y + (h * 0.5f));
+	return TRVec2(x + (w * 0.5f), y + (h * 0.5f));
 }
 
-bool FastRect::Overlaps(FastRect rect)
+bool TRRect::Overlaps(TRRect rect)
 {
 	if (xw() > rect.x && yh() > rect.y && x < rect.xw() && y < rect.yh())
 		return true;
 	return false;
 }
 
-bool FastRect::Contains(FastRect rec)
+bool TRRect::Contains(TRRect rec)
 {
 	if (x < rec.x && xw() > rec.xw() && y < rec.y && yh() > rec.yh())
 		return true;
 	return false;
 }
 
-bool FastRect::Contains(FastVec2 point)
+bool TRRect::Contains(TRVec2 point)
 {
 	if (point.x >= x && point.x <= xw() && point.y >= y && point.y <= yh())
 		return true;
 	return false;
 }
 
-void FastRect::Scissor(FastRect rec)
+void TRRect::Scissor(TRRect rec)
 {
 	
 }
 
-FastColour::FastColour()
+TRColour::TRColour()
 {
 }
 
-FastColour::FastColour(float _r, float _g, float _b)
+TRColour::TRColour(float _r, float _g, float _b)
 {
 	r = _r;
 	g = _g;
@@ -278,7 +276,7 @@ FastColour::FastColour(float _r, float _g, float _b)
 	a = 1.0f;
 }
 
-FastColour::FastColour(const FastVec4 & vec)
+TRColour::TRColour(const TRVec4 & vec)
 {
 	r = vec.x;
 	g = vec.y;
@@ -286,7 +284,7 @@ FastColour::FastColour(const FastVec4 & vec)
 	a = vec.z;
 }
 
-FastColour::FastColour(float _r, float _g, float _b, float _a)
+TRColour::TRColour(float _r, float _g, float _b, float _a)
 {
 	r = _r;
 	g = _g;
@@ -294,24 +292,24 @@ FastColour::FastColour(float _r, float _g, float _b, float _a)
 	a = _a;
 }
 
-FastColour::FastColour(int hexadecimal_val)
+TRColour::TRColour(int hexadecimal_val)
 {	
 	r = ((hexadecimal_val >> 16) & 0xFF) / 255.0f;
 	g = ((hexadecimal_val >> 8) & 0xFF) / 255.0f;
 	b = ((hexadecimal_val) & 0xFF) / 255.0f;
 }
 
-FastColour FastColour::operator+(const FastColour & vec)
+TRColour TRColour::operator+(const TRColour & vec)
 {
-	return FastColour(r + vec.r, g + vec.g, b + vec.b, a + vec.a);
+	return TRColour(r + vec.r, g + vec.g, b + vec.b, a + vec.a);
 }
 
-FastColour FastColour::operator-(const FastColour & vec)
+TRColour TRColour::operator-(const TRColour & vec)
 {
-	return FastColour(r - vec.r, g - vec.g, b - vec.b, a - vec.a);
+	return TRColour(r - vec.r, g - vec.g, b - vec.b, a - vec.a);
 }
 
-void FastColour::operator+=(const FastColour & vec)
+void TRColour::operator+=(const TRColour & vec)
 {
 	r += vec.r;
 	g += vec.g;
@@ -319,7 +317,7 @@ void FastColour::operator+=(const FastColour & vec)
 	a += vec.a;
 }
 
-void FastColour::operator-=(const FastColour & vec)
+void TRColour::operator-=(const TRColour & vec)
 {
 	r -= vec.r;
 	g -= vec.g;
@@ -327,7 +325,7 @@ void FastColour::operator-=(const FastColour & vec)
 	a -= vec.a;
 }
 
-void FastColour::operator*=(const FastColour & vec)
+void TRColour::operator*=(const TRColour & vec)
 {
 	r *= vec.r;
 	g *= vec.g;
@@ -335,7 +333,7 @@ void FastColour::operator*=(const FastColour & vec)
 	a *= vec.a;
 }
 
-void FastColour::operator/=(const FastColour & vec)
+void TRColour::operator/=(const TRColour & vec)
 {
 	if (vec.r != 0)
 		r /= vec.r;
@@ -350,7 +348,7 @@ void FastColour::operator/=(const FastColour & vec)
 		a /= vec.a;
 }
 
-FastRect::FastRect()
+TRRect::TRRect()
 {
 	x = 0;
 	y = 0;
@@ -358,7 +356,7 @@ FastRect::FastRect()
 	h = 0;
 }
 
-FastRect::FastRect(float _x, float _y, float _w, float _h)
+TRRect::TRRect(float _x, float _y, float _w, float _h)
 {
 	x = _x;
 	y = _y;
@@ -366,7 +364,7 @@ FastRect::FastRect(float _x, float _y, float _w, float _h)
 	h = _h;
 }
 
-FastRect::FastRect(const FastVec4 & vec)
+TRRect::TRRect(const TRVec4 & vec)
 {
 	x = vec.x;
 	y = vec.y;
@@ -374,7 +372,7 @@ FastRect::FastRect(const FastVec4 & vec)
 	h = vec.z;
 }
 
-FastRect::FastRect(const FastVec2 & pos, const FastVec2 size)
+TRRect::TRRect(const TRVec2 & pos, const TRVec2 size)
 {
 	x = pos.x;
 	y = pos.y;
@@ -382,7 +380,7 @@ FastRect::FastRect(const FastVec2 & pos, const FastVec2 size)
 	h = size.y;
 }
 
-void FastRect::operator=(const FastRect & rect)
+void TRRect::operator=(const TRRect & rect)
 {
 	x = rect.x;
 	y = rect.y;
@@ -390,21 +388,21 @@ void FastRect::operator=(const FastRect & rect)
 	h = rect.h;
 }
 
-FastBuffer::FastBuffer()
+TRBuffer::TRBuffer()
 {
 }
 
-FastBuffer::FastBuffer(int size)
+TRBuffer::TRBuffer(int size)
 {
 	SetSize(size);
 }
 
-FastBuffer::FastBuffer(int width, int height)
+TRBuffer::TRBuffer(int width, int height)
 {
 	SetSize(width, height);
 }
 
-void FastBuffer::SetSize(int _size)
+void TRBuffer::SetSize(int _size)
 {
 	Clear();
 
@@ -415,7 +413,7 @@ void FastBuffer::SetSize(int _size)
 	Reset();
 }
 
-void FastBuffer::SetSize(int _width, int _heigth)
+void TRBuffer::SetSize(int _width, int _heigth)
 {
 	SetSize(_width * _heigth);
 
@@ -423,7 +421,7 @@ void FastBuffer::SetSize(int _width, int _heigth)
 	heigth = _heigth;
 }
 
-void FastBuffer::Reset()
+void TRBuffer::Reset()
 {
 	if (buffer != nullptr)
 	{
@@ -431,7 +429,7 @@ void FastBuffer::Reset()
 	}
 }
 
-void FastBuffer::Clear()
+void TRBuffer::Clear()
 {
 	if (buffer != nullptr)
 		TR_DEL_ARRAY(buffer);
@@ -439,7 +437,7 @@ void FastBuffer::Clear()
 	buffer = nullptr;
 }
 
-void FastBuffer::AddData(int data_ptr_pos, TR_uchar * data)
+void TRBuffer::AddData(int data_ptr_pos, TR_uchar * data)
 {
 	TR_uchar* tmp_buffer_ptr = buffer;
 
@@ -448,32 +446,32 @@ void FastBuffer::AddData(int data_ptr_pos, TR_uchar * data)
 	memcpy(tmp_buffer_ptr, data, sizeof(data));
 }
 
-TR_uchar * FastBuffer::GetBufferData()
+TR_uchar * TRBuffer::GetBufferData()
 {
 	return buffer;
 }
 
-bool FastBuffer::BufferHasData() const
+bool TRBuffer::BufferHasData() const
 {
 	return buffer != nullptr;
 }
 
-int FastBuffer::GetWidth()
+int TRBuffer::GetWidth()
 {
 	return width;
 }
 
-int FastBuffer::GetHeight()
+int TRBuffer::GetHeight()
 {
 	return heigth;
 }
 
-int FastBuffer::GetSize()
+int TRBuffer::GetSize()
 {
 	return size;
 }
 
-void FastBuffer::FlipUpsideDown()
+void TRBuffer::FlipUpsideDown()
 {
 	TR_uint rows = heigth / 2; // Iterate only half the buffer to get a full flip
 	TR_uchar * tempRow = new TR_uchar[width * sizeof(TR_uchar)];
@@ -488,36 +486,36 @@ void FastBuffer::FlipUpsideDown()
 	TR_DEL_ARRAY(tempRow);
 }
 
-const char * TextRenderer::GetVersion()
+const char * TR::GetVersion()
 {
 	return TEXT_RENDERER_VERSION;
 }
 
 
-void TextRenderer::LoadFont(const char * filepath)
+void TR::LoadFont(const char * filepath)
 {
 
 }
 
-FastInternal::FastFonts::FastFonts()
+TRInternal::TRFonts::TRFonts()
 {
 }
 
-FastInternal::FastFonts::~FastFonts()
+TRInternal::TRFonts::~TRFonts()
 {
 }
 
-void FastInternal::FastFonts::Start()
+void TRInternal::TRFonts::Start()
 {
 }
 
-void FastInternal::FastFonts::CleanUp()
+void TRInternal::TRFonts::CleanUp()
 {
 }
 
-void FastInternal::FastFonts::LoadFont(const char * path, int font_size, FastFontRange range)
+void TRInternal::TRFonts::LoadFont(const char * path, int font_size, TRFontRange range)
 {
-	FastFont* ret = nullptr;
+	TRFont* ret = nullptr;
 
 	stbtt_fontinfo font_info;
 
@@ -536,26 +534,26 @@ void FastInternal::FastFonts::LoadFont(const char * path, int font_size, FastFon
 	fread(fontBuffer, size, 1, fontFile);
 	fclose(fontFile);
 
-	std::vector<FastVec2> glyph_ranges;
+	std::vector<TRVec2> glyph_ranges;
 
-	std::vector<FastVec2> base_range = GetBaseGlyphsRanges();
+	std::vector<TRVec2> base_range = GetBaseGlyphsRanges();
 
 	glyph_ranges.insert(glyph_ranges.end(), base_range.begin(), base_range.end());
 
 	switch (range)
 	{
-	case FastInternal::FastFontRange::FAST_FONT_RANGE_LATIN:
+	case TRInternal::TRFontRange::FAST_FONT_RANGE_LATIN:
 	{
-		std::vector<FastVec2> latin_range = GetLatinGlyphsRanges();
+		std::vector<TRVec2> latin_range = GetLatinGlyphsRanges();
 
 		glyph_ranges.insert(glyph_ranges.end(), latin_range.begin(), latin_range.end());
 
 		break;
 	}
 
-	case FastInternal::FastFontRange::FAST_FONT_RANGE_KOREAN:
+	case TRInternal::TRFontRange::FAST_FONT_RANGE_KOREAN:
 	{
-		std::vector<FastVec2> korean_range = GetKoreanGlyphsRanges();
+		std::vector<TRVec2> korean_range = GetKoreanGlyphsRanges();
 
 		glyph_ranges.insert(glyph_ranges.end(), korean_range.begin(), korean_range.end());
 
@@ -569,11 +567,11 @@ void FastInternal::FastFonts::LoadFont(const char * path, int font_size, FastFon
 		if (curr_font != nullptr)
 			TR_DEL(curr_font);
 
-		ret = new FastFont(font_info);
+		ret = new TRFont(font_info);
 
 		int atlas_tex_w = 2048;
 		int atlas_tex_h = 1024 * 1.0f; // 25
-		FastBuffer buffer(atlas_tex_w, atlas_tex_h);
+		TRBuffer buffer(atlas_tex_w, atlas_tex_h);
 
 		if (font_size < 10)
 			font_size = 10;
@@ -600,7 +598,7 @@ void FastInternal::FastFonts::LoadFont(const char * path, int font_size, FastFon
 		int glyphs_count = 0;
 		for (int r = 0; r < glyph_ranges.size(); ++r)
 		{
-			FastVec2 curr_range = glyph_ranges[r];
+			TRVec2 curr_range = glyph_ranges[r];
 
 			for (int i = curr_range.x; i < curr_range.y; ++i)
 			{
@@ -646,14 +644,14 @@ void FastInternal::FastFonts::LoadFont(const char * path, int font_size, FastFon
 				// Get uvs
 				float x0_size_x = curr_advance;
 				float x0_size_y = (line * (scaled_total_h)-scaled_descent);
-				FastVec2 uvs_x0 = TexturePosToUV(FastVec2(atlas_tex_w, atlas_tex_h), FastVec2(x0_size_x, x0_size_y));
+				TRVec2 uvs_x0 = TexturePosToUV(TRVec2(atlas_tex_w, atlas_tex_h), TRVec2(x0_size_x, x0_size_y));
 
 				float y1_size_x = curr_advance + glyph_bm_w;
 				float y1_size_y = (line * scaled_total_h) + scaled_total_h - scaled_descent;
-				FastVec2 uvs_y1 = TexturePosToUV(FastVec2(atlas_tex_w, atlas_tex_h), FastVec2(y1_size_x, y1_size_y));
+				TRVec2 uvs_y1 = TexturePosToUV(TRVec2(atlas_tex_w, atlas_tex_h), TRVec2(y1_size_x, y1_size_y));
 
-				FastVec2 uvs_x1 = FastVec2(uvs_y1.x, uvs_x0.y);
-				FastVec2 uvs_y0 = FastVec2(uvs_x0.x, uvs_y1.y);
+				TRVec2 uvs_x1 = TRVec2(uvs_y1.x, uvs_x0.y);
+				TRVec2 uvs_y0 = TRVec2(uvs_x0.x, uvs_y1.y);
 
 				// Calculate x/y ratio
 				float ratio_x_y = 1;
@@ -695,14 +693,14 @@ void FastInternal::FastFonts::LoadFont(const char * path, int font_size, FastFon
 	// --------------------------------------
 }
 
-FastInternal::FastFont * FastInternal::FastFonts::GetCurrFont() const
+TRInternal::TRFont * TRInternal::TRFonts::GetCurrFont() const
 {
 	return curr_font;
 }
 
-FastVec2 FastInternal::FastFonts::TexturePosToUV(FastVec2 texture_size, FastVec2 pos)
+TRVec2 TRInternal::TRFonts::TexturePosToUV(TRVec2 texture_size, TRVec2 pos)
 {
-	FastVec2 ret;
+	TRVec2 ret;
 
 	float x_percentage = 0;
 	float y_percentage = 0;
@@ -719,89 +717,89 @@ FastVec2 FastInternal::FastFonts::TexturePosToUV(FastVec2 texture_size, FastVec2
 	return ret;
 }
 
-std::vector<FastVec2> FastInternal::FastFonts::GetBaseGlyphsRanges()
+std::vector<TRVec2> TRInternal::TRFonts::GetBaseGlyphsRanges()
 {
-	std::vector<FastVec2> ret;
+	std::vector<TRVec2> ret;
 
-	ret.push_back(FastVec2(0, 32));
+	ret.push_back(TRVec2(0, 32));
 
 	return ret;
 }
 
-std::vector<FastVec2> FastInternal::FastFonts::GetLatinGlyphsRanges()
+std::vector<TRVec2> TRInternal::TRFonts::GetLatinGlyphsRanges()
 {
-	std::vector<FastVec2> ret;
+	std::vector<TRVec2> ret;
 
-	ret.push_back(FastVec2(32, 255));
+	ret.push_back(TRVec2(32, 255));
 
 	return ret;
 }
 
-std::vector<FastVec2> FastInternal::FastFonts::GetKoreanGlyphsRanges()
+std::vector<TRVec2> TRInternal::TRFonts::GetKoreanGlyphsRanges()
 {
-	std::vector<FastVec2> ret;
+	std::vector<TRVec2> ret;
 
-	ret.push_back(FastVec2(32, 255));
-	ret.push_back(FastVec2(12593, 12643));
-	ret.push_back(FastVec2(44032, 55197));
+	ret.push_back(TRVec2(32, 255));
+	ret.push_back(TRVec2(12593, 12643));
+	ret.push_back(TRVec2(44032, 55197));
 
 	return ret;
 }
 
-std::vector<FastVec2> FastInternal::FastFonts::GetChineseGlyphsRanges()
+std::vector<TRVec2> TRInternal::TRFonts::GetChineseGlyphsRanges()
 {
-	std::vector<FastVec2> ret;
+	std::vector<TRVec2> ret;
 
-	ret.push_back(FastVec2(32, 255));
-	ret.push_back(FastVec2(12288, 12543));
-	ret.push_back(FastVec2(12784, 12799));
-	ret.push_back(FastVec2(65280, 65519));
-	ret.push_back(FastVec2(19968, 40879));
+	ret.push_back(TRVec2(32, 255));
+	ret.push_back(TRVec2(12288, 12543));
+	ret.push_back(TRVec2(12784, 12799));
+	ret.push_back(TRVec2(65280, 65519));
+	ret.push_back(TRVec2(19968, 40879));
 
 	return ret;
 }
 
-std::vector<FastVec2> FastInternal::FastFonts::GetJapaneseGlyphsRanges()
+std::vector<TRVec2> TRInternal::TRFonts::GetJapaneseGlyphsRanges()
 {
-	std::vector<FastVec2> ret;
+	std::vector<TRVec2> ret;
 
-	ret.push_back(FastVec2(32, 255));
+	ret.push_back(TRVec2(32, 255));
 
 	return ret;
 }
 
-std::vector<FastVec2> FastInternal::FastFonts::GetCyrillicGlyphsRanges()
+std::vector<TRVec2> TRInternal::TRFonts::GetCyrillicGlyphsRanges()
 {
-	std::vector<FastVec2> ret;
+	std::vector<TRVec2> ret;
 
-	ret.push_back(FastVec2(32, 255));
+	ret.push_back(TRVec2(32, 255));
 
 	return ret;
 }
 
-std::vector<FastVec2> FastInternal::FastFonts::GetThaiGlyphsRanges()
+std::vector<TRVec2> TRInternal::TRFonts::GetThaiGlyphsRanges()
 {
-	std::vector<FastVec2> ret;
+	std::vector<TRVec2> ret;
 
-	ret.push_back(FastVec2(32, 255));
+	ret.push_back(TRVec2(32, 255));
 
 	return ret;
 }
 
-FastInternal::FastFont::FastFont(stbtt_fontinfo _font_info)
+TRInternal::TRFont::TRFont(stbtt_fontinfo _font_info)
 {
 	info = _font_info;
 }
 
-FastInternal::FastFont::~FastFont()
+TRInternal::TRFont::~TRFont()
 {
 }
 
-void FastInternal::FastFont::CleanUp()
+void TRInternal::TRFont::CleanUp()
 {
 }
 
-FastInternal::FastGlyph FastInternal::FastFont::GetGlyphByChar(TR_uchar c)
+TRInternal::FastGlyph TRInternal::TRFont::GetGlyphByChar(TR_uchar c)
 {
 	FastGlyph ret;
 
@@ -816,54 +814,54 @@ FastInternal::FastGlyph FastInternal::FastFont::GetGlyphByChar(TR_uchar c)
 	return ret;
 }
 
-void FastInternal::FastFont::SetFontScale(float set)
+void TRInternal::TRFont::SetFontScale(float set)
 {
 	scale = set;
 }
 
-float FastInternal::FastFont::GetFontScale()
+float TRInternal::TRFont::GetFontScale()
 {
 	return scale;
 }
 
-FastInternal::FastGlyph::FastGlyph()
+TRInternal::FastGlyph::FastGlyph()
 {
 }
 
-FastInternal::FastDraw::FastDraw()
+TRInternal::TRDraw::TRDraw()
 {
 }
 
-FastInternal::FastDraw::~FastDraw()
+TRInternal::TRDraw::~TRDraw()
 {
 }
 
-void FastInternal::FastDraw::Start()
-{
-
-}
-
-void FastInternal::FastDraw::CleanUp()
+void TRInternal::TRDraw::Start()
 {
 
 }
 
-FastVector<FastInternal::FastDrawShape>& FastInternal::FastDraw::GetDebugShapes()
+void TRInternal::TRDraw::CleanUp()
+{
+
+}
+
+TRVector<TRInternal::TRDrawShape>& TRInternal::TRDraw::GetDebugShapes()
 {
 	return debug_shapes;
 }
 
-void FastInternal::FastDraw::FontAtlas(FastVec2 pos, FastVec2 size, FastFont * font, FastColour colour)
+void TRInternal::TRDraw::FontAtlas(TRVec2 pos, TRVec2 size, TRFont * font, TRColour colour)
 {
 	int min_x = pos.x;
 	int max_x = pos.x + size.x;
 	int min_y = pos.y;
 	int max_y = pos.y + size.y;
 
-	curr_shape.AddPoint(FastVec2(min_x, min_y));
-	curr_shape.AddPoint(FastVec2(min_x, max_y));
-	curr_shape.AddPoint(FastVec2(max_x, max_y));
-	curr_shape.AddPoint(FastVec2(max_x, min_y));
+	curr_shape.AddPoint(TRVec2(min_x, min_y));
+	curr_shape.AddPoint(TRVec2(min_x, max_y));
+	curr_shape.AddPoint(TRVec2(max_x, max_y));
+	curr_shape.AddPoint(TRVec2(max_x, min_y));
 
 	curr_shape.AddTextureId(font->texture_id);
 	curr_shape.Finish(colour);
@@ -872,11 +870,11 @@ void FastInternal::FastDraw::FontAtlas(FastVec2 pos, FastVec2 size, FastFont * f
 		curr_shape.SetClippingRect(curr_clipping_rect);
 }
 
-void FastInternal::FastDraw::Text(FastVec2 pos, float size, FastFont* font, std::string text, FastColour colour)
+void TRInternal::TRDraw::Text(TRVec2 pos, float size, TRFont* font, std::string text, TRColour colour)
 {
 	if (font != nullptr)
 	{
-		FastVec2 curr_pos = pos;
+		TRVec2 curr_pos = pos;
 
 		for (int i = 0; i < text.size(); ++i)
 		{
@@ -893,11 +891,11 @@ void FastInternal::FastDraw::Text(FastVec2 pos, float size, FastFont* font, std:
 				int min_y = curr_pos.y;
 				int max_y = curr_pos.y + size;
 
-				curr_shape.AddPoint(FastVec2(min_x, min_y));
-				curr_shape.AddPoint(FastVec2(min_x, max_y));
-				curr_shape.AddPoint(FastVec2(max_x, max_y));
-				curr_shape.AddPoint(FastVec2(max_x, min_y));
-				curr_shape.Finish(colour, FastVec4(glph.uvs_x0.x, glph.uvs_x0.y, glph.uvs_y1.x, glph.uvs_y1.y));
+				curr_shape.AddPoint(TRVec2(min_x, min_y));
+				curr_shape.AddPoint(TRVec2(min_x, max_y));
+				curr_shape.AddPoint(TRVec2(max_x, max_y));
+				curr_shape.AddPoint(TRVec2(max_x, min_y));
+				curr_shape.Finish(colour, TRVec4(glph.uvs_x0.x, glph.uvs_x0.y, glph.uvs_y1.x, glph.uvs_y1.y));
 
 				curr_pos.x = max_x + (size * 0.11f);
 			}
@@ -905,20 +903,20 @@ void FastInternal::FastDraw::Text(FastVec2 pos, float size, FastFont* font, std:
 				curr_pos.x += size * 0.25f;
 		}
 
-		//curr_shape.AddTextureId(fast_main->fonts->GetCurrFont()->texture_id);
+		curr_shape.AddTextureId(font->texture_id);
 
 		if (clipping_enabled)
 			curr_shape.SetClippingRect(curr_clipping_rect);
 	}
 }
 
-void FastInternal::FastDraw::Text(FastVec2 pos, FastVec2 size, FastFont * font, std::string text, FastDrawTextAlign align, bool overflow, FastColour colour)
+void TRInternal::TRDraw::Text(TRVec2 pos, TRVec2 size, TRFont * font, std::string text, TRDrawTextAlign align, bool overflow, TRColour colour)
 {
 	if (font != nullptr)
 	{
-		FastVec2 curr_pos;
+		TRVec2 curr_pos;
 
-		std::vector<FastDrawTextLineInfo> lines_size_x;
+		std::vector<TRDrawTextLineInfo> lines_size_x;
 
 		for (int i = 0; i < text.size(); ++i)
 		{
@@ -941,7 +939,7 @@ void FastInternal::FastDraw::Text(FastVec2 pos, FastVec2 size, FastFont * font, 
 				{
 					if (max_x > size.x)
 					{
-						FastDrawTextLineInfo line;
+						TRDrawTextLineInfo line;
 						line.x_size = size.x;
 						line.max_word = i;
 						lines_size_x.push_back(line);
@@ -952,7 +950,7 @@ void FastInternal::FastDraw::Text(FastVec2 pos, FastVec2 size, FastFont * font, 
 			else
 				curr_pos.x += size.y * 0.25f;
 		}
-		FastDrawTextLineInfo line;
+		TRDrawTextLineInfo line;
 		line.x_size = curr_pos.x;
 		line.max_word = text.size() - 1;
 		lines_size_x.push_back(line);
@@ -977,10 +975,10 @@ void FastInternal::FastDraw::Text(FastVec2 pos, FastVec2 size, FastFont * font, 
 				{
 					switch (align)
 					{
-					case FastDrawTextAlign::FAST_DRAW_TEXT_ALIGN_RIGHT:
+					case TRDrawTextAlign::FAST_DRAW_TEXT_ALIGN_RIGHT:
 						min_x += size.x - lines_size_x[curr_line].x_size;
 						break;
-					case FastDrawTextAlign::FAST_DRAW_TEXT_ALIGN_CENTER:
+					case TRDrawTextAlign::FAST_DRAW_TEXT_ALIGN_CENTER:
 						min_x += (size.x - (lines_size_x[curr_line].x_size)) * 0.5f;
 						break;
 					}
@@ -991,11 +989,11 @@ void FastInternal::FastDraw::Text(FastVec2 pos, FastVec2 size, FastFont * font, 
 				int max_x = min_x + word_width;
 				int max_y = min_y + size.y;
 
-				curr_shape.AddPoint(FastVec2(min_x, min_y));
-				curr_shape.AddPoint(FastVec2(min_x, max_y));
-				curr_shape.AddPoint(FastVec2(max_x, max_y));
-				curr_shape.AddPoint(FastVec2(max_x, min_y));
-				curr_shape.Finish(colour, FastVec4(glph.uvs_x0.x, glph.uvs_x0.y, glph.uvs_y1.x, glph.uvs_y1.y));
+				curr_shape.AddPoint(TRVec2(min_x, min_y));
+				curr_shape.AddPoint(TRVec2(min_x, max_y));
+				curr_shape.AddPoint(TRVec2(max_x, max_y));
+				curr_shape.AddPoint(TRVec2(max_x, min_y));
+				//curr_shape.Finish(colour, TRVec4(glph.uvs_x0.x, glph.uvs_x0.y, glph.uvs_y1.x, glph.uvs_y1.y));
 
 				curr_pos.x = max_x + (size.y * 0.11f);
 
@@ -1018,11 +1016,11 @@ void FastInternal::FastDraw::Text(FastVec2 pos, FastVec2 size, FastFont * font, 
 	}
 }
 
-FastInternal::FastDrawShape::FastDrawShape()
+TRInternal::TRDrawShape::TRDrawShape()
 {
 }
 
-void FastInternal::FastDrawShape::AddPoint(FastVec2 point_pos)
+void TRInternal::TRDrawShape::AddPoint(TRVec2 point_pos)
 {
 	points.PushBack(point_pos);
 
@@ -1050,12 +1048,12 @@ void FastInternal::FastDrawShape::AddPoint(FastVec2 point_pos)
 	
 }
 
-void FastInternal::FastDrawShape::AddTextureId(TR_uint id)
+void TRInternal::TRDrawShape::AddTextureId(TR_uint id)
 {
 	texture_id = id;
 }
 
-void FastInternal::FastDrawShape::Finish(FastColour colour)
+void TRInternal::TRDrawShape::Finish(TRColour colour)
 {
 	if (points.Size() >= 3)
 	{		
@@ -1068,7 +1066,7 @@ void FastInternal::FastDrawShape::Finish(FastColour colour)
 		// Triangulize
 		for (int i = 0; i < num_points; i++)
 		{
-			FastVec2 curr_point = points[i];
+			TRVec2 curr_point = points[i];
 
 			vertices.PushBack(curr_point.x);
 			vertices.PushBack(curr_point.y);
@@ -1111,7 +1109,7 @@ void FastInternal::FastDrawShape::Finish(FastColour colour)
 
 		curr_indices_count += num_points;
 		points.Clear();
-		quad_size = FastVec4();
+		quad_size = TRVec4();
 		
 		// -----------------------------------
 	}
@@ -1119,7 +1117,7 @@ void FastInternal::FastDrawShape::Finish(FastColour colour)
 	points.Clear();
 }
 
-void FastInternal::FastDrawShape::Finish(FastColour colour, FastVec4 range_uvs)
+void TRInternal::TRDrawShape::Finish(TRColour colour, TRVec4 range_uvs)
 {
 	if (points.Size() >= 3)
 	{
@@ -1128,7 +1126,7 @@ void FastInternal::FastDrawShape::Finish(FastColour colour, FastVec4 range_uvs)
 		// Triangulize
 		for (int i = 0; i < num_points; i++)
 		{
-			FastVec2 curr_point = points[i];
+			TRVec2 curr_point = points[i];
 
 			vertices.PushBack(curr_point.x);
 			vertices.PushBack(curr_point.y);
@@ -1185,13 +1183,13 @@ void FastInternal::FastDrawShape::Finish(FastColour colour, FastVec4 range_uvs)
 
 		curr_indices_count += num_points;
 		points.Clear();
-		quad_size = FastVec4();
+		quad_size = TRVec4();
 		
 		// -----------------------------------
 	}
 }
 
-void FastInternal::FastDrawShape::Clear()
+void TRInternal::TRDrawShape::Clear()
 {
 	finished = false;
 
@@ -1204,7 +1202,7 @@ void FastInternal::FastDrawShape::Clear()
 	points.Clear();
 }
 
-void FastInternal::FastDrawShape::SetClippingRect(const FastRect & rect)
+void TRInternal::TRDrawShape::SetClippingRect(const TRRect & rect)
 {
 	clipping_rect = rect;
 
@@ -1212,7 +1210,7 @@ void FastInternal::FastDrawShape::SetClippingRect(const FastRect & rect)
 		uses_clipping_rect = true;
 }
 
-TR_uint * FastInternal::FastDrawShape::GetIndicesPtr()
+TR_uint * TRInternal::TRDrawShape::GetIndicesPtr()
 {
 	TR_uint* ret = nullptr;
 
@@ -1222,17 +1220,17 @@ TR_uint * FastInternal::FastDrawShape::GetIndicesPtr()
 	return ret;
 }
 
-FastVector<TR_uint> FastInternal::FastDrawShape::GetIndices()
+TRVector<TR_uint> TRInternal::TRDrawShape::GetIndices()
 {
 	return indices;
 }
 
-TR_uint FastInternal::FastDrawShape::GetIndicesCount()
+TR_uint TRInternal::TRDrawShape::GetIndicesCount()
 {
 	return indices.Size();
 }
 
-float * FastInternal::FastDrawShape::GetVerticesPtr()
+float * TRInternal::TRDrawShape::GetVerticesPtr()
 {
 	float* ret = nullptr;
 
@@ -1242,12 +1240,12 @@ float * FastInternal::FastDrawShape::GetVerticesPtr()
 	return ret;
 }
 
-FastVector<float> FastInternal::FastDrawShape::GetVertices()
+TRVector<float> TRInternal::TRDrawShape::GetVertices()
 {
 	return vertices;
 }
 
-float * FastInternal::FastDrawShape::GetColoursPtr()
+float * TRInternal::TRDrawShape::GetColoursPtr()
 {
 	float* ret = nullptr;
 
@@ -1257,12 +1255,12 @@ float * FastInternal::FastDrawShape::GetColoursPtr()
 	return ret;
 }
 
-FastVector<float> FastInternal::FastDrawShape::GetColours()
+TRVector<float> TRInternal::TRDrawShape::GetColours()
 {
 	return colours;
 }
 
-float * FastInternal::FastDrawShape::GetUvsPtr()
+float * TRInternal::TRDrawShape::GetUvsPtr()
 {
 	float* ret = nullptr;
 
@@ -1272,12 +1270,12 @@ float * FastInternal::FastDrawShape::GetUvsPtr()
 	return ret;
 }
 
-FastVector<float> FastInternal::FastDrawShape::GetUvs()
+TRVector<float> TRInternal::TRDrawShape::GetUvs()
 {
 	return uvs;
 }
 
-float * FastInternal::FastDrawShape::GetVerticesColourUvsPtr()
+float * TRInternal::TRDrawShape::GetVerticesColourUvsPtr()
 {
 	float* ret = nullptr;
 
@@ -1287,57 +1285,75 @@ float * FastInternal::FastDrawShape::GetVerticesColourUvsPtr()
 	return ret;
 }
 
-FastVector<float> FastInternal::FastDrawShape::GetVerticesColoursUvs()
+TRVector<float> TRInternal::TRDrawShape::GetVerticesColoursUvs()
 {
 	return vertices_colour_uvs;
 }
 
-bool FastInternal::FastDrawShape::GetUsesClippingRect() const
+bool TRInternal::TRDrawShape::GetUsesClippingRect() const
 {
 	return uses_clipping_rect;
 }
 
-FastRect FastInternal::FastDrawShape::GetClippingRect() const
+TRRect TRInternal::TRDrawShape::GetClippingRect() const
 {
 	return clipping_rect;
 }
 
-TR_uint FastInternal::FastDrawShape::GetTextureId()
+TR_uint TRInternal::TRDrawShape::GetTextureId()
 {
 	return texture_id;
 }
 
-TR_uint FastInternal::FastDrawShape::Offset()
+TR_uint TRInternal::TRDrawShape::Offset()
 {
 	return 6;
 }
 
-TR_uint FastInternal::FastDrawShape::VerticesOffset() const
+TR_uint TRInternal::TRDrawShape::VerticesOffset() const
 {
 	return 0;
 }
 
-TR_uint FastInternal::FastDrawShape::VerticesSize() const
+TR_uint TRInternal::TRDrawShape::VerticesSize() const
 {
 	return 3;
 }
 
-TR_uint FastInternal::FastDrawShape::ColourOffset() const
+TR_uint TRInternal::TRDrawShape::ColourOffset() const
 {
 	return 3;
 }
 
-TR_uint FastInternal::FastDrawShape::ColoursSize() const
+TR_uint TRInternal::TRDrawShape::ColoursSize() const
 {
 	return 4;
 }
 
-TR_uint FastInternal::FastDrawShape::UvsOffset() const
+TR_uint TRInternal::TRDrawShape::UvsOffset() const
 {
 	return 7;
 }
 
-TR_uint FastInternal::FastDrawShape::UvsSize() const
+TR_uint TRInternal::TRDrawShape::UvsSize() const
 {
 	return 2;
+}
+
+void TRInternal::TRMain::Init()
+{
+}
+
+void TRInternal::TRMain::Quit()
+{
+}
+
+void TRInternal::TRMain::SetViewport(const TRVec4 & _viewport)
+{
+	viewport = _viewport;
+}
+
+TRVec4 TRInternal::TRMain::GetViewport() const
+{
+	return viewport;
 }

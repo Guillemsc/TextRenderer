@@ -64,47 +64,66 @@ typedef unsigned char TR_uchar;
 
 // ---------------------------------------------------------------------------------------------------------
 
+//class Singleton
+//{
+//public:
+//	static Singleton& Instance()
+//	{
+//		static Singleton instance;
+//
+//		return instance;
+//	}
+//
+//	Singleton() {};
+//
+//private:
+//	Singleton(Singleton const&) {};
+//	void operator = (Singleton const&) {};
+//
+//};
+
+
 // ---------------------------------------------------------------------------------------------------------
 // Custom general use classes ------------------------------------------------------------------------------
 
-class FastVec2
+class TRVec2
 {
 public:
-	FastVec2();
-	FastVec2(float x, float y);
+	TRVec2();
+	TRVec2(float x, float y);
 
-	FastVec2 operator + (const FastVec2& vec);
-	FastVec2 operator - (const FastVec2& vec);
-	FastVec2 operator * (const FastVec2& vec);
-	FastVec2 operator * (int vec);
-	FastVec2 operator * (float vec);
-	FastVec2 operator / (const FastVec2& vec);
-	void operator += (const FastVec2& vec);
-	void operator -= (const FastVec2& vec);
-	void operator *= (const FastVec2& vec);
-	void operator /= (const FastVec2& vec);
+	TRVec2 operator + (const TRVec2& vec);
+	TRVec2 operator - (const TRVec2& vec);
+	TRVec2 operator * (const TRVec2& vec);
+	TRVec2 operator * (int vec);
+	TRVec2 operator * (float vec);
+	TRVec2 operator / (const TRVec2& vec);
+	void operator += (const TRVec2& vec);
+	void operator -= (const TRVec2& vec);
+	void operator *= (const TRVec2& vec);
+	void operator /= (const TRVec2& vec);
 
-	float Distance(const FastVec2& vec);
+	float Distance(const TRVec2& vec);
 
 public:
 	float x = 0.0f;
 	float y = 0.0f;
 };
 
-class FastVec3
+class TRVec3
 {
 public:
-	FastVec3();
-	FastVec3(float x, float y, float z);
+	TRVec3();
+	TRVec3(float x, float y, float z);
 
-	FastVec3 operator + (const FastVec3& vec);
-	FastVec3 operator - (const FastVec3& vec);
-	void operator += (const FastVec3& vec);
-	void operator -= (const FastVec3& vec);
-	void operator *= (const FastVec3& vec);
-	void operator /= (const FastVec3& vec);
+	TRVec3 operator + (const TRVec3& vec);
+	TRVec3 operator - (const TRVec3& vec);
+	void operator += (const TRVec3& vec);
+	void operator -= (const TRVec3& vec);
+	void operator *= (const TRVec3& vec);
+	void operator /= (const TRVec3& vec);
 
-	float Distance(const FastVec3& vec);
+	float Distance(const TRVec3& vec);
 
 public:
 	float x = 0.0f;
@@ -112,18 +131,18 @@ public:
 	float z = 0.0f;
 };
 
-class FastVec4
+class TRVec4
 {
 public:
-	FastVec4();
-	FastVec4(float x, float y, float w, float z);
+	TRVec4();
+	TRVec4(float x, float y, float w, float z);
 
-	FastVec4 operator + (const FastVec4& vec);
-	FastVec4 operator - (const FastVec4& vec);
-	void operator += (const FastVec4& vec);
-	void operator -= (const FastVec4& vec);
-	void operator *= (const FastVec4& vec);
-	void operator /= (const FastVec4& vec);
+	TRVec4 operator + (const TRVec4& vec);
+	TRVec4 operator - (const TRVec4& vec);
+	void operator += (const TRVec4& vec);
+	void operator -= (const TRVec4& vec);
+	void operator *= (const TRVec4& vec);
+	void operator /= (const TRVec4& vec);
 
 public:
 	float x = 0.0f;
@@ -132,21 +151,21 @@ public:
 	float z = 0.0f;
 };
 
-class FastColour
+class TRColour
 {
 public:
-	FastColour();
-	FastColour(float r, float g, float b);
-	FastColour(const FastVec4& vec);
-	FastColour(float r, float g, float b, float a);
-	FastColour(int hexadecimal_val);
+	TRColour();
+	TRColour(float r, float g, float b);
+	TRColour(const TRVec4& vec);
+	TRColour(float r, float g, float b, float a);
+	TRColour(int hexadecimal_val);
 
-	FastColour operator + (const FastColour& vec);
-	FastColour operator - (const FastColour& vec);
-	void operator += (const FastColour& vec);
-	void operator -= (const FastColour& vec);
-	void operator *= (const FastColour& vec);
-	void operator /= (const FastColour& vec);
+	TRColour operator + (const TRColour& vec);
+	TRColour operator - (const TRColour& vec);
+	void operator += (const TRColour& vec);
+	void operator -= (const TRColour& vec);
+	void operator *= (const TRColour& vec);
+	void operator /= (const TRColour& vec);
 
 public:
 	float r = 0.0f;
@@ -155,27 +174,27 @@ public:
 	float a = 0.0f;
 };
 
-class FastRect
+class TRRect
 {
 public:
-	FastRect();
-	FastRect(float x, float y, float w, float h);
-	FastRect(const FastVec4& vec);
-	FastRect(const FastVec2& pos, const FastVec2 size);
+	TRRect();
+	TRRect(float x, float y, float w, float h);
+	TRRect(const TRVec4& vec);
+	TRRect(const TRVec2& pos, const TRVec2 size);
 
-	void operator = (const FastRect& rect);
+	void operator = (const TRRect& rect);
 
 	inline float xw();
 	inline float yh();
 
-	FastVec2 Pos();
-	FastVec2 Size();
-	FastVec2 Center();
+	TRVec2 Pos();
+	TRVec2 Size();
+	TRVec2 Center();
 
-	bool Overlaps(FastRect rec);
-	bool Contains(FastRect rec);
-	bool Contains(FastVec2 point);
-	void Scissor(FastRect rec);
+	bool Overlaps(TRRect rec);
+	bool Contains(TRRect rec);
+	bool Contains(TRVec2 point);
+	void Scissor(TRRect rec);
 
 public:
 	float x = 0.0f;
@@ -184,12 +203,12 @@ public:
 	float h = 0.0f;
 };
 
-class FastBuffer
+class TRBuffer
 {
 public:
-	FastBuffer();
-	FastBuffer(int size);
-	FastBuffer(int width, int heigth);
+	TRBuffer();
+	TRBuffer(int size);
+	TRBuffer(int width, int heigth);
 	
 	void SetSize(int size);
 	void SetSize(int width, int heigth);
@@ -216,16 +235,16 @@ private:
 };
 
 template<class TYPE>
-class FastVector
+class TRVector
 {
 public:
-	FastVector() { };
-	FastVector(const FastVector& element) { Substitute(element); };
-	~FastVector() { FreeData(); };
+	TRVector() { };
+	TRVector(const TRVector& element) { Substitute(element); };
+	~TRVector() { FreeData(); };
 
-	TYPE& operator[] (Fuint index) { FAST_ASSERT(index < data_capacity, "Index out of boundaries"); return data_array[index]; };
-	void operator = (const FastVector & element) { Substitute(element); };
-	void operator += (const FastVector& element) { Concatenate(element); };
+	TYPE& operator[] (TR_uint index) { TR_ASSERT(index < data_capacity, "Index out of boundaries"); return data_array[index]; };
+	void operator = (const TRVector & element) { Substitute(element); };
+	void operator += (const TRVector& element) { Concatenate(element); };
 
 	inline void PushBack(TYPE element)
 	{
@@ -237,7 +256,7 @@ public:
 
 	inline void RemoveAt(int index)
 	{
-		FAST_ASSERT(index < data_capacity, "Index out of boundaries");
+		TR_ASSERT(index < data_capacity, "Index out of boundaries");
 
 		for (int i = index; i < data_used - 1; ++i)
 			data_array[i] = data_array[i + 1];
@@ -254,7 +273,7 @@ public:
 	inline TYPE* Data() { return data_array; };
 
 private:
-	void Resize(Fuint size)
+	void Resize(TR_uint size)
 	{
 		if (size > 0 && size > data_used)
 		{
@@ -268,7 +287,7 @@ private:
 
 				data_capacity = size;
 
-				FAST_DEL_ARRAY(data_array);
+				TR_DEL_ARRAY(data_array);
 
 				data_array = new_data;
 			}
@@ -280,7 +299,7 @@ private:
 		}
 	};
 
-	void Substitute(const FastVector& element)
+	void Substitute(const TRVector& element)
 	{
 		Clear();
 		Resize(element.data_used + chunk_size);
@@ -291,7 +310,7 @@ private:
 		data_used = element.data_used;
 	};
 
-	void Concatenate(const FastVector& element)
+	void Concatenate(const TRVector& element)
 	{
 		int new_size = data_used + element.data_used;
 
@@ -304,61 +323,171 @@ private:
 		data_used = new_size;
 	};
 
-	void FreeData(){ FAST_DEL_ARRAY(data_array); data_capacity = 0; data_used = 0; }
+	void FreeData(){ TR_DEL_ARRAY(data_array); data_capacity = 0; data_used = 0; }
 
 private:
 	TYPE *    data_array = nullptr;
-	Fuint     data_capacity = 0;
+	TR_uint     data_capacity = 0;
 
-	Fuint     data_used = 0;
+	TR_uint     data_used = 0;
+
+	const int chunk_size = 50;
+};
+
+template<class TYPE>
+class TRVectorMem
+{
+public:
+	TRVectorMem() { };
+	TRVectorMem(const TRVectorMem& element) { Substitute(element); };
+	~TRVectorMem() { FreeData(); };
+
+	TYPE& operator[] (TR_uint index) { TR_ASSERT(index < data_capacity, "Index out of boundaries"); return data_array[index]; };
+	void operator = (const TRVectorMem & element) { Substitute(element); };
+	void operator += (const TRVectorMem& element) { Concatenate(element); };
+
+	inline void PushBack(TYPE element)
+	{
+		if (data_capacity < data_used + 1)
+			Resize(data_capacity + chunk_size);
+
+		data_array[data_used++] = element;
+	};
+
+	inline void RemoveAt(int index)
+	{
+		TR_ASSERT(index < data_capacity, "Index out of boundaries");
+
+		for (int i = index; i < data_used - 1; ++i)
+			data_array[i] = data_array[i + 1];
+
+		if (data_used > 0)
+			--data_used;
+
+		if (data_capacity > data_used + chunk_size)
+			Resize(data_capacity - chunk_size);
+	};
+
+	inline void Clear() { data_used = 0; };
+	inline int Size() { return data_used; };
+	inline TYPE* Data() { return data_array; };
+
+private:
+	void Resize(TR_uint size)
+	{
+		if (size > 0 && size > data_used)
+		{
+			if (data_capacity > 0)
+			{
+				TYPE* new_data = nullptr;
+				new_data = new TYPE[size];
+
+				for (int i = 0; i < data_used; ++i)
+					new_data[i] = data_array[i];
+
+				data_capacity = size;
+
+				TR_DEL_ARRAY(data_array);
+
+				data_array = new_data;
+			}
+			else
+			{
+				data_array = new TYPE[size];
+				data_capacity = size;
+			}
+		}
+	};
+
+	void Substitute(const TRVectorMem& element)
+	{
+		Clear();
+		Resize(element.data_used + chunk_size);
+
+		memcpy(data_array, element.data_array, element.data_used);
+
+		data_used = element.data_used;
+	};
+
+	void Concatenate(const TRVectorMem& element)
+	{
+		int new_size = data_used + element.data_used;
+
+		if (new_size > data_capacity)
+			Resize(new_size);
+
+		memcpy(data_array, element.data_array, element.data_used);
+
+		data_used = new_size;
+	};
+
+	void FreeData() { TR_DEL_ARRAY(data_array); data_capacity = 0; data_used = 0; }
+
+private:
+	TYPE * data_array = nullptr;
+	TR_uint     data_capacity = 0;
+
+	TR_uint     data_used = 0;
 
 	const int chunk_size = 50;
 };
 
 // ---------------------------------------------------------------------------------------------------------
 
-namespace FastInternal
+namespace TRInternal
 {
 	// -----------------------------------------------------------------------------------------------------
 	// Forward declarations --------------------------------------------------------------------------------
 
-	class FastMain;
-
-	class FastCreation;
-	enum  FastElementType;
-	class FastElement;
-	class FastWindow;
-
-	class FastIO;
-	enum  FastKeyMapping;
-
-	class FastStyle;
-	struct FastStyleColours;
-	struct FastStylePhyisical;
-
-	class FastFonts;
-	class FastFont;
+	class TRFonts;
+	class TRFont;
 	class FastGlyph;
 
-	class FastDraw;
-	class FastDrawShape;
-
-	class FastElements;
+	class TRDraw;
+	class TRDrawShape;
 
 	// -----------------------------------------------------------------------------------------------------
 	// Internal classes ------------------------------------------------------------------------------------
 
 	// ----------------------------------------------------------------------------
 
+	class TRMain
+	{
+	public:
+		static TRMain& Instance()
+		{
+			static TRMain instance;
+		
+			return instance;
+		}
+		
+	private:
+		TRMain() {};
+		TRMain(TRMain const&) {};
+		void operator = (TRMain const&) {};
+
+	public:
+		void Init();
+		void Quit();
+
+		void SetViewport(const TRVec4& viewport);
+		TRVec4 GetViewport() const;
+
+		int val = 0;
+
+	private:
+		TRVec4 viewport;
+	};
+
 	//-----------------------------------------------------------------------------
 	// Fonts
 	//-----------------------------------------------------------------------------
 
-	class FastFont
+	class TRFont
 	{
 	public:
-		FastFont(stbtt_fontinfo font_info);
-		~FastFont();
+		TRFont(stbtt_fontinfo font_info);
+		~TRFont();
 
 		void CleanUp();
 
@@ -370,9 +499,9 @@ namespace FastInternal
 	public:
 		TR_uchar*  texture_data = nullptr;
 		TR_uint    texture_id = 0;
-		FastVec2 size = FastVec2(0, 0);
+		TRVec2 size = TRVec2(0, 0);
 
-		FastVector<FastGlyph> glyphs;
+		TRVector<FastGlyph> glyphs;
 
 	private:
 	
@@ -387,15 +516,15 @@ namespace FastInternal
 	public:
 		FastGlyph();
 
-		FastVec2 uvs_x0;
-		FastVec2 uvs_y0;
-		FastVec2 uvs_x1;
-		FastVec2 uvs_y1;
+		TRVec2 uvs_x0;
+		TRVec2 uvs_y0;
+		TRVec2 uvs_x1;
+		TRVec2 uvs_y1;
 
 		float    ratio_x_y = 0.0f;
 	};
 
-	enum FastFontRange
+	enum TRFontRange
 	{
 		FAST_FONT_RANGE_LATIN,
 		FAST_FONT_RANGE_KOREAN,
@@ -405,32 +534,32 @@ namespace FastInternal
 		FAST_FONT_RANGE_THAI,
 	};
 
-	class FastFonts 
+	class TRFonts 
 	{
 	public:
-		FastFonts();
-		~FastFonts();
+		TRFonts();
+		~TRFonts();
 
 		void Start();
 		void CleanUp();
 
-		void LoadFont(const char* path, int font_size, FastFontRange range = FastFontRange::FAST_FONT_RANGE_LATIN);
+		void LoadFont(const char* path, int font_size, TRFontRange range = TRFontRange::FAST_FONT_RANGE_LATIN);
 
-		FastFont* GetCurrFont() const;
-
-	private:
-		FastVec2 TexturePosToUV(FastVec2 texture_size, FastVec2 pos);
-
-		std::vector<FastVec2> GetBaseGlyphsRanges();
-		std::vector<FastVec2> GetLatinGlyphsRanges();
-		std::vector<FastVec2> GetKoreanGlyphsRanges();
-		std::vector<FastVec2> GetChineseGlyphsRanges();
-		std::vector<FastVec2> GetJapaneseGlyphsRanges();
-		std::vector<FastVec2> GetCyrillicGlyphsRanges();
-		std::vector<FastVec2> GetThaiGlyphsRanges();
+		TRFont* GetCurrFont() const;
 
 	private:
-		FastFont* curr_font = nullptr;
+		TRVec2 TexturePosToUV(TRVec2 texture_size, TRVec2 pos);
+
+		std::vector<TRVec2> GetBaseGlyphsRanges();
+		std::vector<TRVec2> GetLatinGlyphsRanges();
+		std::vector<TRVec2> GetKoreanGlyphsRanges();
+		std::vector<TRVec2> GetChineseGlyphsRanges();
+		std::vector<TRVec2> GetJapaneseGlyphsRanges();
+		std::vector<TRVec2> GetCyrillicGlyphsRanges();
+		std::vector<TRVec2> GetThaiGlyphsRanges();
+
+	private:
+		TRFont* curr_font = nullptr;
 	};
 
 	// ----------------------------------------------------------------------------
@@ -439,32 +568,32 @@ namespace FastInternal
 	// Draw
 	//-----------------------------------------------------------------------------
 
-	class FastDrawShape
+	class TRDrawShape
 	{
 	public:
-		FastDrawShape();
+		TRDrawShape();
 
-		void AddPoint(FastVec2 point_pos);
+		void AddPoint(TRVec2 point_pos);
 		void AddTextureId(TR_uint id);
-		void Finish(FastColour colour);
-		void Finish(FastColour colour, FastVec4 range_uvs);
+		void Finish(TRColour colour);
+		void Finish(TRColour colour, TRVec4 range_uvs);
 		void Clear();
-		void SetClippingRect(const FastRect& rect);
+		void SetClippingRect(const TRRect& rect);
 
 		TR_uint* GetIndicesPtr();
-		FastVector<TR_uint> GetIndices();
+		TRVector<TR_uint> GetIndices();
 		TR_uint GetIndicesCount();
 		float* GetVerticesPtr();
-		FastVector<float> GetVertices();
+		TRVector<float> GetVertices();
 		float* GetColoursPtr();
-		FastVector<float> GetColours();
+		TRVector<float> GetColours();
 		float* GetUvsPtr();
-		FastVector<float> GetUvs();
+		TRVector<float> GetUvs();
 		float* GetVerticesColourUvsPtr();
-		FastVector<float> GetVerticesColoursUvs();
+		TRVector<float> GetVerticesColoursUvs();
 
 		bool GetUsesClippingRect() const;
-		FastRect GetClippingRect() const;
+		TRRect GetClippingRect() const;
 
 		TR_uint GetTextureId();
 
@@ -477,62 +606,61 @@ namespace FastInternal
 		TR_uint UvsSize() const;
 
 	private:
-		FastVector<TR_uint>   indices;
-		FastVector<float>     vertices;
-		FastVector<float>     colours;
-		FastVector<float>     uvs;
-		FastVector<float>     vertices_colour_uvs;
+		TRVector<TR_uint>   indices;
+		TRVector<float>     vertices;
+		TRVector<float>     colours;
+		TRVector<float>     uvs;
+		TRVector<float>     vertices_colour_uvs;
 
-		TR_uint				  curr_indices_count = 0;
+		TR_uint				curr_indices_count = 0;
 
-		TR_uint                 texture_id = 0;
+		TR_uint             texture_id = 0;
 
-		bool				  finished = false;
-		FastVector<FastVec2> points;
+		bool			    finished = false;
+		TRVector<TRVec2>    points;
 
-		bool				  uses_clipping_rect = false;
-		FastRect			  clipping_rect;
+		bool				uses_clipping_rect = false;
+		TRRect			    clipping_rect;
 
-		FastVec4			  quad_size;
+		TRVec4			    quad_size;
 	};
 
-	enum FastDrawTextAlign
+	enum TRDrawTextAlign
 	{
 		FAST_DRAW_TEXT_ALIGN_LEFT,
 		FAST_DRAW_TEXT_ALIGN_CENTER,
 		FAST_DRAW_TEXT_ALIGN_RIGHT,
 	};
 
-	struct FastDrawTextLineInfo
+	struct TRDrawTextLineInfo
 	{
 		float x_size = 0;
 		TR_uint max_word = 0;
 	};
 
-	class FastDraw 
+	class TRDraw 
 	{
 	public:
-		 FastDraw();
-		~FastDraw();
+		 TRDraw();
+		~TRDraw();
 
 		void Start();
 		void CleanUp();
 
-		void DrawDebug();
-		FastVector<FastDrawShape>& GetDebugShapes();
+		TRVector<TRDrawShape>& GetDebugShapes();
 
-		void FontAtlas(FastVec2 pos, FastVec2 size, FastFont* font, FastColour colour);
-		void Text(FastVec2 pos, float size, FastFont* font, std::string text, FastColour colour);
-		void Text(FastVec2 pos, FastVec2 size, FastFont* font, std::string text, FastDrawTextAlign align, bool overflow, FastColour colour);
+		void FontAtlas(TRVec2 pos, TRVec2 size, TRFont* font, TRColour colour);
+		void Text(TRVec2 pos, float size, TRFont* font, std::string text, TRColour colour);
+		void Text(TRVec2 pos, TRVec2 size, TRFont* font, std::string text, TRDrawTextAlign align, bool overflow, TRColour colour);
 
 	private:
-		FastVector<FastDrawShape> debug_shapes;
+		TRVector<TRDrawShape> debug_shapes;
 
-		bool	      drawing_shape = false;
-		FastDrawShape curr_shape;
+		bool	    drawing_shape = false;
+		TRDrawShape curr_shape;
 
-		bool	      clipping_enabled = false;
-		FastRect      curr_clipping_rect;
+		bool	    clipping_enabled = false;
+		TRRect      curr_clipping_rect;
 	};
 
 	// ----------------------------------------------------------------------------
@@ -540,7 +668,7 @@ namespace FastInternal
 	// -----------------------------------------------------------------------------------------------------
 }
 
-namespace TextRenderer
+namespace TR
 {
 	// -----------------------------------------------------------------------------------------------------
 	// User exposed functions ------------------------------------------------------------------------------
