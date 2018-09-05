@@ -50,7 +50,6 @@
 #define QUARTER_PI 0.78539816339744830961f
 #define INV_PI	   0.31830988618379067154f
 #define INV_TWO_PI 0.15915494309189533576f
-#define HAVE_M_PI
 
 #define TR_ASSERT(_EXPR, _MSG) assert(_EXPR && _MSG)
 
@@ -64,24 +63,7 @@ typedef unsigned char TR_uchar;
 
 // ---------------------------------------------------------------------------------------------------------
 
-//class Singleton
-//{
-//public:
-//	static Singleton& Instance()
-//	{
-//		static Singleton instance;
-//
-//		return instance;
-//	}
-//
-//	Singleton() {};
-//
-//private:
-//	Singleton(Singleton const&) {};
-//	void operator = (Singleton const&) {};
-//
-//};
-
+static TRInternal::TRMain* main = nullptr;
 
 // ---------------------------------------------------------------------------------------------------------
 // Custom general use classes ------------------------------------------------------------------------------
@@ -454,29 +436,23 @@ namespace TRInternal
 	class TRMain
 	{
 	public:
-		static TRMain& Instance()
-		{
-			static TRMain instance;
-		
-			return instance;
-		}
-		
-	private:
 		TRMain() {};
-		TRMain(TRMain const&) {};
-		void operator = (TRMain const&) {};
 
 	public:
 		void Init();
 		void Quit();
 
+		TRFonts* Fonts();
+		TRDraw* Draw();
+
 		void SetViewport(const TRVec4& viewport);
 		TRVec4 GetViewport() const;
 
-		int val = 0;
-
 	private:
 		TRVec4 viewport;
+
+		TRFonts* fonts = nullptr;
+		TRDraw*  draw = nullptr;
 	};
 
 	//-----------------------------------------------------------------------------
@@ -651,7 +627,6 @@ namespace TRInternal
 
 		void FontAtlas(TRVec2 pos, TRVec2 size, TRFont* font, TRColour colour);
 		void Text(TRVec2 pos, float size, TRFont* font, std::string text, TRColour colour);
-		void Text(TRVec2 pos, TRVec2 size, TRFont* font, std::string text, TRDrawTextAlign align, bool overflow, TRColour colour);
 
 	private:
 		TRVector<TRDrawShape> debug_shapes;
@@ -672,6 +647,8 @@ namespace TR
 {
 	// -----------------------------------------------------------------------------------------------------
 	// User exposed functions ------------------------------------------------------------------------------
+
+	void Init();
 
 	const char* GetVersion();
 

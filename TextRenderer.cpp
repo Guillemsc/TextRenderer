@@ -486,6 +486,15 @@ void TRBuffer::FlipUpsideDown()
 	TR_DEL_ARRAY(tempRow);
 }
 
+void TR::Init()
+{
+	if (main == nullptr)
+	{
+		main = new TRInternal::TRMain();
+		main->Init();
+	}
+}
+
 const char * TR::GetVersion()
 {
 	return TEXT_RENDERER_VERSION;
@@ -910,112 +919,6 @@ void TRInternal::TRDraw::Text(TRVec2 pos, float size, TRFont* font, std::string 
 	}
 }
 
-void TRInternal::TRDraw::Text(TRVec2 pos, TRVec2 size, TRFont * font, std::string text, TRDrawTextAlign align, bool overflow, TRColour colour)
-{
-	if (font != nullptr)
-	{
-		TRVec2 curr_pos;
-
-		std::vector<TRDrawTextLineInfo> lines_size_x;
-
-		for (int i = 0; i < text.size(); ++i)
-		{
-			TR_uchar c = text[i];
-
-			if (c != ' ')
-			{
-				FastGlyph glph = font->GetGlyphByChar(c);
-
-				int word_width = size.y * glph.ratio_x_y;
-
-				int min_x = curr_pos.x;
-				int max_x = curr_pos.x + word_width;
-				int min_y = curr_pos.y;
-				int max_y = curr_pos.y + size.y;
-
-				curr_pos.x = max_x + (size.y * 0.11f);
-
-				if (!overflow)
-				{
-					if (max_x > size.x)
-					{
-						TRDrawTextLineInfo line;
-						line.x_size = size.x;
-						line.max_word = i;
-						lines_size_x.push_back(line);
-						curr_pos.x = 0;
-					}
-				}
-			}
-			else
-				curr_pos.x += size.y * 0.25f;
-		}
-		TRDrawTextLineInfo line;
-		line.x_size = curr_pos.x;
-		line.max_word = text.size() - 1;
-		lines_size_x.push_back(line);
-
-		curr_pos = pos;
-		TR_uint curr_line = 0;
-		bool fist_time_advance = true;
-		for (int i = 0; i < text.size(); ++i)
-		{
-			TR_uchar c = text[i];
-
-			if (c != ' ')
-			{
-				FastGlyph glph = font->GetGlyphByChar(c);
-
-				int word_width = size.y * glph.ratio_x_y;
-
-				int min_x = curr_pos.x;
-				int min_y = curr_pos.y;
-
-				if (fist_time_advance)
-				{
-					switch (align)
-					{
-					case TRDrawTextAlign::FAST_DRAW_TEXT_ALIGN_RIGHT:
-						min_x += size.x - lines_size_x[curr_line].x_size;
-						break;
-					case TRDrawTextAlign::FAST_DRAW_TEXT_ALIGN_CENTER:
-						min_x += (size.x - (lines_size_x[curr_line].x_size)) * 0.5f;
-						break;
-					}
-
-					fist_time_advance = false;
-				}
-
-				int max_x = min_x + word_width;
-				int max_y = min_y + size.y;
-
-				curr_shape.AddPoint(TRVec2(min_x, min_y));
-				curr_shape.AddPoint(TRVec2(min_x, max_y));
-				curr_shape.AddPoint(TRVec2(max_x, max_y));
-				curr_shape.AddPoint(TRVec2(max_x, min_y));
-				//curr_shape.Finish(colour, TRVec4(glph.uvs_x0.x, glph.uvs_x0.y, glph.uvs_y1.x, glph.uvs_y1.y));
-
-				curr_pos.x = max_x + (size.y * 0.11f);
-
-				if (lines_size_x[curr_line].max_word == i)
-				{
-					fist_time_advance = true;
-					curr_pos.x = pos.x;
-					curr_pos.y += size.y;
-					++curr_line;
-				}
-			}
-			else
-				curr_pos.x += size.y * 0.25f;
-		}
-
-		//curr_shape.AddTextureId(fast_main->fonts->GetCurrFont()->texture_id);
-
-		if (clipping_enabled)
-			curr_shape.SetClippingRect(curr_clipping_rect);
-	}
-}
-
 TRInternal::TRDrawShape::TRDrawShape()
 {
 }
@@ -1342,10 +1245,22 @@ TR_uint TRInternal::TRDrawShape::UvsSize() const
 
 void TRInternal::TRMain::Init()
 {
+	fonts = new TRInternal::TRFonts();
+	draw = new TRInternal::TRDraw();
 }
 
 void TRInternal::TRMain::Quit()
 {
+}
+
+TRInternal::TRFonts * TRInternal::TRMain::Fonts()
+{
+	return fonts;
+}
+
+TRInternal::TRDraw * TRInternal::TRMain::Draw()
+{
+	return draw;
 }
 
 void TRInternal::TRMain::SetViewport(const TRVec4 & _viewport)
